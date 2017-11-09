@@ -8,6 +8,7 @@ var ratio = argv.ratio || 3;
 var napa = require('napajs');
 var zone = napa.zone.create('zone1', { workers: parseInt(iterations/ratio) });
 
+// create a large object, so that we don't have to commit one
 function getBigJsonString(c) {
   var obj = {
     str: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mauris risus, volutpat sed eros in, consectetur rhoncus sapien. Sed faucibus ultrices tincidunt.',
@@ -29,10 +30,12 @@ var startGen = Date.now();
 var largeJson = getBigJsonString(size);
 console.log('JSON string of length %s created in %sms', largeJson.length, Date.now() - startGen, 'ms');
 
+// the function to test!
 function parse(str) {
   return JSON.parse(str);
 }
 
+// simple function that will queue up a parse using napa
 function napaParse(i) {
   var start = Date.now();
 
@@ -43,6 +46,7 @@ function napaParse(i) {
   });
 }
 
+// simple function that will queue up a parse on the main node thread
 function normalParse(i) {
   var start = Date.now();
 
@@ -52,6 +56,7 @@ function normalParse(i) {
   console.log('%s done in %sms', i, Date.now() - start);
 }
 
+// execute main thread version first, since we know this is all synchronous
 var normalCount = iterations;
 while (normalCount--) {
   normalParse(normalCount + ' normal parse');
@@ -59,6 +64,7 @@ while (normalCount--) {
 
 console.log('----------------------------------');
 
+// execute the napa thread version
 var napaCount = iterations;
 while (napaCount--) {
   napaParse(napaCount + ' napa parse');
