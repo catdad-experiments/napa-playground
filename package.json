@@ -1,0 +1,19 @@
+{
+  "name": "napa-playground",
+  "version": "1.0.0",
+  "description": "napa-playground",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/catdad-experiments/napa-playground.git"
+  },
+  "author": "Kiril Vatev <vatev.1@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/catdad-experiments/napa-playground/issues"
+  },
+  "homepage": "https://github.com/catdad-experiments/napa-playground#readme"
+}
