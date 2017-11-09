@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/catdad-experiments/napa-playground#readme",
   "dependencies": {
-    "napajs": "^0.1.5"
+    "napajs": "^0.1.5",
+    "yargs": "^10.0.3"
   }
 }

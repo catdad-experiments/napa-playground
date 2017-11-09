@@ -1,7 +1,24 @@
 /* jshint node: true */
 
+var util = require('util');
+
 var napa = require('napajs');
-var zone1 = napa.zone.create('zone1', { workers: 6 });
+
+var argv = require('yargs').argv;
+
+var zoneName = argv.zone || 'napa-zone';
+var zoneWorkers = argv.workers || 2;
+var runCount = argv.count || 6;
+
+var zone = napa.zone.node;
+
+if (zoneName === 'node') {
+  zoneWorkers = '?';
+} else {
+  zone = napa.zone.create(zoneName, { workers: zoneWorkers });
+}
+
+console.log('running %s zone with %s workers', zoneName, zoneWorkers);
 
 var count = 0;
 
@@ -21,16 +38,13 @@ function exec() {
 
   console.log('starting', i);
 
-  zone1.execute(longWork).then(function () {
+  zone.execute(longWork).then(function () {
     console.log('done', i, 'in', Date.now() - start, 'ms');
   });
 }
 
-exec();
-exec();
-exec();
-exec();
-exec();
-exec();
+while (runCount--) {
+  exec();
+}
 
 console.log('end of script');
