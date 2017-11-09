@@ -4,7 +4,7 @@ This repo is meant to experiment with [NapaJS](https://github.com/Microsoft/napa
 
 ## `zone-workers.js`
 
-**The node zone has only one worker. This worker blocks the event loop of the main node thread while executing, though work is scheduled asynchronously.**
+**The node zone has only one worker. This worker blocks the event loop of the main node thread while executing, though work is scheduled asynchronously. This is probs just running in the existing parent thread. Not really useful.**
 
 ```bash
 D:\Git\napa-playground>node zone-workers.js --zone node --count 1
