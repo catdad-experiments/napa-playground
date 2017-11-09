@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/catdad-experiments/napa-playground/issues"
   },
-  "homepage": "https://github.com/catdad-experiments/napa-playground#readme"
+  "homepage": "https://github.com/catdad-experiments/napa-playground#readme",
+  "dependencies": {
+    "napajs": "^0.1.5"
+  }
 }
